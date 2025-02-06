@@ -1,0 +1,96 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{ASTR 400B Homework 3}
+\author{Savannah Smith\\ 
+Theoretical Astrophysics II}
+
+\maketitle
+
+\noindent 
+
+\section{Tables}
+
+\noindent Below is the table that I made using LaTeX:
+
+\begin{center}
+\scriptsize
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Galaxy Name & Halo Mass ($10^{12}$$M_{\odot}$) & Disk Mass ($10^{12}$$M_{\odot}$) & Bulge Mass ($10^{12}$$M_{\odot}$) & Total Mass ($10^{12}$$M_{\odot}$) & $f_{bar}$ \\ [0.5ex] 
+ \hline\hline
+ MW & 1.975 & 0.075 & 0.010 & 2.060 & 0.041 \\ 
+ \hline
+ M31 & 1.921 & 0.120 & 0.019 & 2.060 & 0.068 \\
+ \hline
+ M33 & 0.187 & 0.009 & 0.0 & 0.196 & 0.047 \\
+ \hline
+ local group & 4.082 & 0.204 & 0.029 & 4.316 & 0.054 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+\noindent Below is the table that I made using the pandas package in the Jupyter Notebook:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{JupyterTable.png}
+\end{figure}
+
+\noindent All of the mass values are in scientific notation with $10^{12}$ and have units of solar mass ($M_{\odot}$). The term "fbar" refers to the Baryon fraction of the galaxy. This is defined as the ratio of the stellar mass to the total mass of the galaxy.
+
+\section{Questions}
+
+\begin{enumerate}
+
+\item How does the total mass of the MW and M31 compare in this simulation? What galaxy component dominates this total mass?  
+
+\noindent \textbf{The total mass of the MW and the total mass of M31 very similar}. The difference in mass is roughly $1.049\times 10^{6}$ $M_{\odot}$, with more mass existing within M31. The galaxy component that \textbf{dominates the total mass is the dark matter halo}. This component of the galaxy's mass is roughly 100 times the mass of either of the other components.
+
+\item How does the stellar mass of the MW and M31 compare? Which galaxy do you expect to be more luminous?
+
+\noindent Assuming that stellar mass is the addition of the disk mass and the bulge mass, the stellar mass of the MW is roughly $8.500\times 10^{10}$ $M_{\odot}$ and the stellar mass of M31 is roughly $1.390\times 10^{11}$ $M_{\odot}$. \textbf{The difference in stellar mass between the MW and M31 is roughly $5.404\times 10^{10}$ $M_{\odot}$}. Because M31 has a greater stellar mass than the MW, I would \textbf{expect M31 to be more luminous than the MW}.
+
+\item How does the total dark matter mass of MW and M31 compare in this simulation (ratio)? Is this surprising, given their difference in stellar mass?
+
+\noindent The total dark matter mass of the MW is roughly $1.975\times 10^{12}$ $M_{\odot}$ and the total dark matter mass of M31 is roughly $1.921\times 10^{12}$ $M_{\odot}$. \textbf{The ratio of dark matter in M31 to dark matter in the MW is roughly 0.973}, meaning that there is more dark matter in the MW than in M31. This is surprising, in my opinion, \textbf{because there is roughly $10^{10}$ $M_{\odot}$ less stellar mass in the MW than in M31, but there is more dark matter mass in the MW than in M31}. I would have expected the dark matter mass to follow a similar relationship as the stellar mass. It seems like this would imply that M31 has had more star formation than the MW.
+
+\item What is the ratio of stellar mass to total mass for each galaxy (i.e. the Baryon fraction)? In the Universe, Ωb/Ωm ∼16\% of all mass is locked up in baryons (gas and stars) vs. dark matter. How does this ratio compare to the baryon fraction you computed for each galaxy? Given that the total gas mass in the disks of these galaxies is negligible compared to the stellar mass, any ideas for why the universal baryon fraction might differ from that in these galaxies?
+
+\noindent The Baryon fractions for the \textbf{MW, M31, and M33} are 0.041, 0.068, and 0.047, respectively. In percentages, these are \textbf{4.1\%, 6.8\%, and 4.7\%}, respectively. The local group has a Baryon fraction of roughly 5.4\%. These numbers are \textbf{significantly smaller than the universe value of 16\%}. These smaller percentages could imply many things about our local group. These galaxies could have had less star formation occur compared to other galaxies or there could have been more star death (including supernovae) than other galaxies. Our local group could also have more dark matter than other galaxies. Also, our local group could host more "violent" events than other galaxies resulting in material being ejected into intergalactic space.
+
+\end{enumerate}
+
+\end{document}
