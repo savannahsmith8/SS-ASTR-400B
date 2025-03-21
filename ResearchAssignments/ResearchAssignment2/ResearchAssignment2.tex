@@ -1,0 +1,96 @@
+%% Beginning of file 'sample7.tex'
+%%
+%% Version 7. Created January 2025.  
+%%
+%% AASTeX v7 calls the following external packages:
+%% times, hyperref, ifthen, hyphens, longtable, xcolor, 
+%% bookmarks, array, rotating, ulem, and lineno 
+%%
+%% RevTeX is no longer used in AASTeX v7.
+%%
+\documentclass[linenumbers,trackchanges]{aastex7}
+
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand\aastex{AAS\TeX}
+\newcommand\latex{La\TeX}
+\usepackage{subcaption}
+\captionsetup[subfigure]{width=0.95\textwidth}
+
+\begin{document}
+
+\title{How Galaxies and Dark Matter Halos Evolve Together Through Mergers}
+
+\author{Savannah Smith}
+\altaffiliation{Steward Observatory}
+\affiliation{University of Arizona}
+\email[show]{savannahsmith8@arizona.edu}  
+
+\section{INTRODUCTION} 
+
+%% How do galaxies and dark matter halos evolve together through mergers? 
+\paragraph{} My proposed topic explores how galaxies and dark matter halos evolve together through mergers. We know though multiple studies that the structure of individual halos is closely related to that galaxy's merger history with the shape of the dark matter halo remnant being directly related to the parameters of the last major merger \citep{Drakos+2019}. Although it may take a longer amount of time (approximately 2 billion years) for the supermassive black holes of two galaxies to collide, their dark matter halos will begin to merge on a much shorter timescale (within one orbit after initial merge), although it may take an extensive amount of time for the shape to completely stabilize \citep{Drakos+2019}, see figure \ref{fig:DrakosMerge}. We can analyze these galaxy mergers by studying their dark matter halos pre-collision and post-collision and comparing the halo remnant to the disk remnant.
+
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[t]{.45\textwidth}
+    \centering
+      \includegraphics[width=0.65\linewidth]{DrakosMergerN.png}
+      \caption{This figure shows the axis ratios c/a and c/b where a, b, and c represent the major, median, and minor axes, respectively. The figure also shows the structural parameters r' peak and v' peak relative to their original values of r peak and v peak, as a function of time, for different resolutions (N values). The vertical dotted lines show the time by which the two halos had completely merged \citep{Drakos+2019}.}
+      \label{fig:DrakosMerge}
+    \end{subfigure}
+    \begin{subfigure}[t]{.45\textwidth}
+    \centering
+      \includegraphics[width=0.6\linewidth]{ChuaDarkBaryon.png}
+      \caption{This figure shows the dark matter halo shape profiles for parameters defined as q $\equiv$ b/a (top), s $\equiv$ c/a (middle), and triaxiality T $\equiv$ (1 - $q^2$)/(1 - $s^2$) (bottom where a $>$ b $>$ c) in ellipsoidal shells as a function of halo-centric distance. Solid and dashed lines represent results from the hydrodynamic simulation Illustris with baryons and the DMO simulation Illustris-Dark without baryons, respectively. Colors denote different halo mass bins. From this figure, we can see that baryons significantly cause the dark matter halo to be more spherical (proven by the increased q and s values) and make halos more oblate (decreased T). This figure also shows that this effect is strongest at smaller radii and becomes negligible at large radii (the virial radius) \citep{Chua+2019}.}
+      \label{fig:ChuaBaryon}
+    \end{subfigure}
+\caption{Two figures from \cite{Drakos+2019} showing the axis ratios of a simulated galaxy merger and \cite{Chua+2019} showing how the axis ratios change when baryons are introduced to the simulation.}
+\label{fig:AxisRatios}
+\end{figure}
+
+\paragraph{} Galaxy mergers play a crucial role in galaxy evolution. While galaxies will evolve on their own, mergers allow for a large amount of interaction between two massive astronomical objects. Dark matter halos account for the majority of a galaxy's mass so naturally, it follows that the nature of this part of the galaxy would determine the evolution of this galaxy. Because dark matter cannot be directly studied using electromagnetic radiation, using simulations such as the one in this project and in the studies mentioned throughout this paper are essential to understanding how the dark matter halos change throughout a galaxy merger.
+
+\paragraph{} Although we cannot physically see dark matter in our universe, we can still study dark matter by studying the surrounding visible matter and therefore, we can determine the nature of these dark matter halos that encompass the baryon disks of galaxies, see figure \ref{fig:ChuaBaryon}. We are able to determine from multiple studies that the baryon matter that lies within the disk of a galaxy directly influences the shape of the dark matter halo \citep{Prada+2019}. In simulations where baryons are present, the dark matter halo is much more spherical than in simulations where only dark matter is present \citep{Chua+2019}. This is displayed in figure \ref{fig:ChuaBaryon}. Although some studies claim that the orientations of dark matter halos would remain relatively constant though mergers, \cite{Baptista+2023} claims through an analysis with the LMC that a major merger would result in an alteration in the halos orientation due to the change in angular momentum.
+
+\paragraph{} \cite{Drakos+2019} notes that the simulations in their study were only conducted using a binary equal-mass merger but using various density profiles. The simulated galaxies were varied enough that the dark matter halos could be differentiated pre-collision and post-collision, but other parameters remained the same in order to simplify the results of the study. In general, the analysis of dark matter halos pre-collision and post-collision has not been studied as much as other aspects of galaxies. \cite{Baptista+2023} explores the interaction of the MW with the LMC, but not with another galaxy, therefore it is crucial that we can analyze the interactions between the MW and M31 so we can explore the dark matter halo interactions between two galaxies.
+
+\section{PROPOSAL}
+
+\subsection{This Proposal} Firstly, we can determine whether the dark matter halo remnant is experiencing prograde or retrograde rotation relative to the disk and how this depends on the radius of the dark matter halo. Secondly, we can study the angular momentum of the disk and the halo pre-merger and post-merger. Specifically, we can determine the fraction of the angular momentum that exists in the disk to that which exists in the halo. Similarly, we can analyze if the net angular momentum (from both the baryon disk and the dark matter halo) is conserved pre-merger and post-merger. The angular momentum can be studied through the merger by analyzing the parameters $\epsilon$ (representing the circularity) and $\lambda$ (a dimensionless spin parameter) \citep{Drakos+2019}.
+
+\subsection{Methods}
+
+\subsubsection{Prograde or Retrograde?} To determine whether the dark matter halo is prograde or retrograde, the angular momentum needs to be computed for both the dark matter halo and the baryon disk. If the dark matter halo is prograde, the orbital rotation is in the same direction as the disk. If the dark matter halo is retrograde, the orbital rotation is in the opposite direction as the disk. To compute the angular momentum of either body, we can use the following equation where \textit{i} is the \textit{i}th particle in the data:
+\begin{center}
+    $\vec{L} = \sum_{i} \vec{r_i} \times \vec{p_i} = \sum_{i} m_i (\vec{r_i} \times \vec{v_i})$
+\end{center}
+From the simulation data, we have the mass of every particle, the radial position vector of every particle (x, y, and z components), and the velocity vector of every particle (x, y, and z components) with respect to the center of mass of the galaxy. For the code, the function will take particle type as a parameter with type 1 being the dark matter particles and type 2 being the baryon disk particles.
+\paragraph{} To determine if the dark matter halo is prograde or retrograde, it is necessary to compute the dot product of the angular momenta of the dark matter halo and the baryon disk. For this we can say the following by definition of the dot product:
+\begin{center}
+    $\vec{L_{halo}} \cdot \vec{L_{disk}} = |\vec{L_{halo}}||\vec{L_{disk}}|cos\theta$ $\rightarrow$ $cos\theta = \frac{\vec{L_{halo}} \cdot \vec{L_{disk}}}{|\vec{L_{halo}}||\vec{L_{disk}}|}$
+\end{center}
+The information that will express whether the orbit around the disk is prograde or retrograde is the cosine expression. If the cosine term is negative, the orbit of the dark matter halo is prograde. If the cosine term is positive, the orbit of the dark matter halo is retrograde.
+\paragraph{} To determine how the halo remnant's rotation changes with radius, in the code, a restriction on the radius could be hard-coded so that only particles within a certain radius were being considered. Similarly, an array of radii could be used within a function to simplify computing. Then these orbits can be compared to see if the dark matter halo is prograde or retrograde at certain radii or if there is any variation throughout the galaxy remnant. Because this discussion involves the galaxy remnant after the merger, snapshots post-merger (after approximately 6.3 Gyr) will be used but I would like to test multiple snapshots to analyze how different the angular momenta are right after the halos merge and then once the galaxy remnant has had time to stabilize.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Lab7_RotationCurve.png}
+    \caption{This plot shows the rotation curve of the x position versus the velocity in the y direction of disk particles within the Milky Way galaxy. From the above equations, we know that both the position vector and the velocity vector contribute to the angular momentum of the particle. This plot shows one component of each of these three dimensional vectors used to calculate the angular velocity.}
+    \label{fig:Lab7RotationCurve}
+\end{figure}
+
+\subsubsection{Angular Momentum of the Dark Matter Halo and the Baryon Disk} To analyze the total angular momentum of the dark matter halo and the baryon disk, we know that for both pre-collision and post-collision, the total angular momentum would be the addition of the angular momentum of the halo and the angular momentum of the disk. We can use simple ratios to find the fraction of angular momentum that resides in the halo and the disk with respect to the total angular momentum:
+\begin{center}
+    $f_{halo} = |\vec{L_{halo}}| / L_{total}$
+    \\$f_{disk} = |\vec{L_{disk}}| / L_{total}$
+\end{center}
+For the analysis of this question before the merger, I would like to use the snapshots near 0, but I would also like to use the snapshots closer to the time of the collision (potentially 1 Gyr before the collision). For the analysis of this question after the merger, I would like to use snapshots near the time of collision and snapshots once the galaxy remnant has had time to stabilize and reach equilibrium.
+\paragraph{} It is also important to analyze whether total angular momentum is conserved before and after the collision. To do so, we can add the initial angular momentum of the halo pre-collision and the initial angular momentum of the disk pre-collision which will result in the total angular momentum of the system pre-collision. These will be calculated using the previously defined equation for angular momentum and as previously mentioned, the function will take particle type as a parameter with type 1 being the dark matter particles and type 2 being the baryon disk particles. Similar snapshots will be chosen as described in the previous section. If the difference between the initial and final angular momentum is significant, I would like to analyze potential causes for this change.
+
+\subsection{Hypothesis} After watching a video simulations of the local group, it seems that relative to each other, the Milky Way and M31 are rotating in opposite directions (the Milky Way rotating clockwise and M31 rotating counterclockwise). It also seems that the Milky Way has both a prograde and a retrograde component to the dark matter halo rotation while the dark matter halo of M31 seems to have a prograde orbit \citep{Deason+2011}. Because of this, I would hypothesize that the dark matter halo remnant post-collision would orbit retrograde to the baryon disk remnant post-collision. Because the halo has a lower density with the mass more spread out among the halo, I hypothesize that the disk of the remnant will have more angular momentum than the halo of the remnant. All of the baryon matter orbiting within the disk will be moving at greater velocities than the objects within the halo. Assuming that there is no external torque acting on the system, I hypothesize that the total angular momentum of the system will remain constant before and after the collision. It would seem as though there would be external factors that would apply torque to the MW-M31 system (such as M33 or other satellites), but I do not believe that these are included in the simulation data. Therefore, I do not expect to calculate a significant change in the total angular momentum.
+
+\bibliography{sample7}{}
+\bibliographystyle{aasjournalv7}
+
+\end{document}
+
