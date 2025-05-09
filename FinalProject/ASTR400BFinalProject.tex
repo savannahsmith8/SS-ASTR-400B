@@ -1,0 +1,235 @@
+% mnras_template.tex 
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.3 released April 2024
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.3 April 2024
+%   Updated \pubyear to print the current year automatically
+% v3.2 July 2023
+%	Updated guidance on use of amssymb package
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[fleqn,usenatbib]{mnras}
+
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+\usepackage{float}
+
+% Allow "Thomas van Noord" and "Simon de Laguarde" and alike to be sorted by "N" and "L" etc. in the bibliography.
+% Write the name in the bibliography as "\VAN{Noord}{Van}{van} Noord, Thomas"
+\DeclareRobustCommand{\VAN}[3]{#2}
+\let\VANthebibliography\thebibliography
+\def\thebibliography{\DeclareRobustCommand{\VAN}[3]{##3}\VANthebibliography}
+
+% Only include extra packages if you really need them. Avoid using amssymb if newtxmath is enabled, as these packages can cause conflicts. newtxmatch covers the same math symbols while producing a consistent Times New Roman font. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+\usepackage{subcaption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+\title{The Motion of the Dark Matter Halo Remnant of the MW-M31 Merger: Prograde or Retrograde?}
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author{Savannah Smith}
+
+\date{8 May 2025}
+
+% Prints the current year, for the copyright statements etc. To achieve a fixed year, replace the expression with a number. 
+\pubyear{\the\year{}}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+\begin{abstract}
+The rotational motion of dark matter halos--- whether prograde (same direction) or retrograde (different directions) relative to their stellar disks--- is determined by the distribution of angular momentum throughout the galaxy components and plays a critical role in galaxy evolution. While most dark matter halos rotate prograde with respect to their stellar disk, this motion may change drastically throughout a major merger and these changes can provide insights into a remnant's dynamical history and structural evolution. In this study, I used an N-body simulation using semi-analytical orbit integrations to examine the motion of the dark matter halos and stellar disks of the Milky Way Galaxy (MW) and the Andromeda Galaxy (M31). Specifically, I analyzed whether the dark matter halo remnant has prograde or retrograde motion with respect to the stellar disk remnant and how this motion evolves throughout the timescale of the major merger. I found that the motion of the dark matter halo fluctuates between prograde and retrograde throughout the merger but that the motion of the dark matter halo remnant stabilizes toward prograde motion relative to the stellar disk remnant. This result explains how angular momentum can be redistributed throughout major mergers and expands our understanding of how the alignment of the dark matter halo angular momentum and the stellar disk angular momentum evolves.
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+Stellar Disk -- Cold Dark Matter Theory -- Dark Matter Halo -- Halo Spin -- Hernquist Profile
+\end{keywords}
+
+% halo spin, major merger
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+\paragraph{} Galaxies and dark matter halos evolve together through large-scale mergers, with the dark matter halo and the baryonic matter merging on different timescales. The \textbf{Stellar Disk} is a relatively thin and flat component of a galaxy that contains the majority of a galaxy's stars and stellar material (baryon material). \textbf{Cold Dark Matter Theory} is the theory that dark matter consists of weakly interacting massive particles (WIMPs) with relatively small thermal velocities, allowing them to form small structures of less than one solar mass \citep{Diemand+2011}. It is now theorized that CDM combines to create a cosmic web structure, connecting everything in the observable universe. In addition to the cosmic web, we can define \textbf{Dark Matter (DM) Halos} as a virialized distribution of dark matter that does not expand with the Hubble expansion of the universe. These regions are an overdensity of DM that have some factor (dependent on the density profile used) more DM than the average DM density of the universe. DM halos become the sites of galaxy formation due to the fact that these higher densities of DM gravitationally attract baryons. DM halos cannot be physically observed using any electromagnetic radiation, but we can observe the gravitational effects on satellite bodies, since the halos extend past the visible baryon matter of a galaxy, such as the stellar disk. The \textbf{Hernquist Profile} is one of many density profiles that describes the distribution of the DM within the halo and produces the scale radius, which represents the radius at which the DM halo goes from high density to a significantly lower density \citep{Hern+1990, Dubinski+1999}. The Hernquist density profile follows the following equation:
+\begin{equation}
+    \rho(r) = (M_{halo} / 2\pi) * (h_a/(r*(r+h_a)^3))
+\end{equation}
+where $M_{halo}$ is the mass of the DM halo, $h_a$ is the Hernquist scale radius for the galaxy, and $r$ is the distance from the galactic center. With this Hernquist profile, we can roughly define where the density of the stellar disk and the DM halo decrease significantly and how certain properties, such as angular momentum, change at different radii throughout a major merger. Because of their size and the large amount of mass that results in stronger gravitational attraction, the DM halos will be the first to have gravitational interactions in a major merger, as well as be the first to have gravitational interactions with other satellite bodies. Therefore, mergers, both minor and major, greatly affect the structure and shape of DM halos \citep{Drakos+2019}.
+
+% DM halo: a virialized (follows virial equilibrium) distribution of dark matter that is decoupled from the expansion of the universe
+% DM halos are "overdensities" of DM where the average density is some given factor (depends on the profile) larger than the average DM density of the universe
+% DM halos gravitational attract baryons, therefore are the sites of galaxy formation (private communication, G. Besla 05.06.2025)
+
+% baryons can get to higher density (center regions of halo bc the potential well is greater)
+
+\paragraph{} Galaxy mergers play a crucial role in galaxy evolution. While galaxies will evolve on their own, mergers allow for a large amount of interaction between two massive astronomical objects. The term \textbf{galaxy} is derived from the Greek word for "milky". \textbf{Galaxy} is defined as a "gravitationally bound collection of stars whose properties cannot be explained by a combination of baryons and Newton's laws of gravity" \citep{Willman+2012}, although \cite{Willman+2012} does discuss other ways to identify and classify galaxies, such as stellar kinematics and [Fe/H] spread. This definition implies a dependence on dark matter, without explicitly saying so, as Cold Dark Matter (CDM) Theory is not considered a physical law due to the lack of observational evidence. The term \textbf{galaxy evolution} refers to the formation of a galaxy and how that galaxy changes over time. Because CDM halos account for the majority of a galaxy's mass, it follows that the merging of the DM halos would greatly influence the nature of the galaxy remnant.
+
+\paragraph{} From \cite{Bett+2010} we know from the two simulations conducted with and without baryonic matter that it is most probable for the motion of the DM halo to be prograde with respect to the motion of the stellar disk. This is shown in figure \ref{fig:Bett+2010} but it is important to note that this figure represents a probability distribution for a stable galaxy system. Multiple studies have found that the stellar matter that lies within the disk of a galaxy directly influences the shape and kinematics of the dark matter halo \citep{Prada+2019, Bett+2010}. In simulations where baryons are present, the DM halo is more likely to rotate prograde relative to the stellar disk \citep{Bett+2010}. Although some studies claim that the properties of dark matter halos would remain relatively constant through mergers, \cite{Baptista+2023} claims, through an analysis with the LMC, that a major merger would result in an alteration in the halos' orientation due to the change in angular momentum. Also, instead of DM halos being supported by rotation, \cite{Diemand+2011} claims that DM halos are instead supported by \textit{almost} isotropic velocity dispersions, but further claims that there is approximately the same amount material with positive and negative angular momentum relative to any reference frame \citep{Diemand+2011}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Bett+2010fig7Annotated.png}
+    \caption{This figure shows the probability distribution of the angle between the specific angular momentum vector of the galaxies (stellar disk matter) and the specific angular momentum vector of either DM halo from two different simulations. The data in red represents the DMG halo which considered both the DM halo and the stellar matter encompassed by the DM halo (termed galaxy in this paper). The data in blue represents the DMO halo which considers only the DM halo without the stellar matter. The y-axis represents the distribution probability of each angle between the two specific angular momentum vectors. The lower x-axis represents the cosine term from the dot product between the two specific angular momentum vectors and the upper x-axis represents the corresponding angle between the two specific angular momentum vectors \citep{Bett+2010}. As shown by the annotations, this figure demonstrates that the most probable angle between the two specific angular momentum vectors is zero meaning that it is most probable for the motion of the DM halo to be prograde to the stellar disk (for a stable system). Although we know this is the most probable state for a single galaxy, this project analyzes whether this is the case throughout a major galaxy merger or if the prograde/retrograde motion varies over time.}
+    \label{fig:Bett+2010}
+\end{figure}
+
+\paragraph{} There are many open questions concerning the evolution of galaxies and dark matter halos through mergers, and these questions are actively being studied. Although \cite{Bett+2010} concludes that it is most probable that the motion of the DM halo is prograde relative to the stellar disk, as shown in figure \ref{fig:Bett+2010}, the first major question is how the angular momentum of the DM halo evolves throughout a major merger with respect to the stellar disk and if the effects remain after a considerable timescale. Further, it is still in question whether or not the spin of the DM halo remnant favors one galaxy over the other \citep{Rod+2017}. Similarly, a second major question outlined in \cite{Drakos+2019} is how we can compare a galaxy's substructure to relate its past merger history to its final state. \cite{Drakos+2019} discusses many broad conclusions for size, shape, and spin, but notes that more research would be beneficial for clarification. A third major question considering mergers is how the overall mass of the galaxy remnant compares to the mass of each of the host galaxies, due to the fact that large amounts of matter, both dark matter and stellar, will be ejected during the merger. Researchers are trying to solve these open questions by using simulation data of various galaxies with various density profiles. Some simulations isolate the DM halo, and some use data for both a stellar disk \textit{and} a DM halo. 
+
+
+\section{This Project}
+
+\paragraph{} In this paper, I study whether the DM halo remnant of the Milky Way (MW) and Andromeda (M31) merger will be prograde or retrograde with respect to the rotation of the stellar disk. Prograde motion refers to motion that exists in the \textit{same} direction as the object it is surrounding, whereas retrograde motion refers to motion that exists in the \textit{opposite} direction as the object it is surrounding. \textbf{Halo Spin}, denoted $\lambda$, is a dimensionless measure of the angular momentum of the dark matter halo and can be defined using the following equation \citep{Peebles}:
+\begin{equation}
+    \lambda = (\sqrt{E_0} * J) / (G * M^{5/2})
+\end{equation}
+where $J$ is the total specific angular momentum of the DM halo (both baryons and DM), $E_0$ is the total energy of the DM halo, $M$ is the total mass of the DM halo, and $G$ is the gravitational constant \citep{Obreja+2021}. Although halo spin is most often used to discuss the angular momentum of galaxy components, in the case of this paper, I will be directly analyzing the angular momentum of both the DM halo and the stellar disk of both MW and M31 pre-merger and the MW-M31 remnant post-merger. One can compare the direction of the angular momenta in three-dimensional space and determine if there is prograde or retrograde motion occurring. By examining the angular momentum across different times, one can analyze how the rotation changes through the MW-M31 merger.
+
+\paragraph{} Of the open questions previously discussed, this project addresses the first major question about how the angular momentum of the DM halo and the stellar disk evolves throughout a major merger. For determining if the DM halo's motion is prograde or retrograde, it is essential that one analyzes the angular momentum of both the stellar disk and the DM halo. Figure \ref{fig:Bett+2010} shows the probability distribution for a stable galaxy system but this project will analyze the angle between the two angular momentum vectors (of the DM halo and the stellar disk) throughout the MW-M31 major merger, including a small time period post-merger where the galaxy remnant may have time to stabilize.
+
+\paragraph{} This question is important for galaxy evolution because DM halos contain a large amount of the galaxy's total mass, even though it is not able to be directly studied using electromagnetic radiation. Because mergers are not an astronomical event that happens on a regular basis within an observable radius, we use simulations of galaxy mergers, both minor and major, to determine the changes that occur throughout a merger. Throughout these mergers, angular momentum can oppose each other as the galaxies collide and cause changes to the stellar disk. A change to the DM halo means a change to the environment that surrounds the other main components of a galaxy (disk and bulge), and so a dramatic change in the halo could result in a change in the baryonic components.
+
+
+\section{Methodology}
+
+\paragraph{} This project uses simulation data outlined in \cite{Marel+2012}, which discusses the "future dynamical evolution of the system composed of the MW, M31, and M33" \citep{Marel+2012} by using \textit{N}-body simulations and semi-analytic orbit integrations for each of these galaxies. \textit{N}-body simulation refers to simulations that consider a large number of particles and determine the position and velocity vector of each particle, considering their interactions with each other. This simulation only considers stellar material and dark matter within the local group of the MW, M33, and M33 (no gas particles). The DM halo is represented using a Hernquist density profile (as explained by equation 1) and, for the stellar disk, the virial radius was used to determine many properties such as the virial mass and the concentration \citep{Marel+2012}.
+
+\paragraph{} To determine whether the DM halo of the galaxy remnant has prograde or retrograde motion with respect to the stellar disk, one must calculate the angular momentum of both the DM halo and the stellar disk. To do so, I used both the stellar disk (type 2) and the DM halo (type 1) particles for the MW and M31 from the simulation data. The low-resolution data was used. For each particle type, I calculated the angular momentum and then I calculated the dot product of the disk angular momentum and the halo angular momentum. If the dot product is positive, the orbit of the dark matter halo is prograde and if the dot product is negative, the orbit of the dark matter halo is retrograde (which is shown in figures \ref{fig:Bett+2010} and \ref{fig:ProVRetro}). One can plot the sign of the dot product over an array of times (snapshots of the simulation data) to analyze how the rotation of the DM halo evolves throughout the MW-M31 merger.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{ProgradeVsRetrograde.png}
+    \caption{This figure shows the different possible orientations for prograde and retrograde motion. The inner region represents the stellar disk and the outer region represents the DM halo. The red, dotted line represents the angular momentum vector of the stellar disk and is denoted by $\vec{L_s}$. The blue, solid line represents the angular momentum vector of the DM halo and is denoted by $\vec{L_{DM}}$. If the angle between the the two angular momentum vectors is between 0 and 90 degrees (including zero) then the $cos(\theta)$ term will be between 0 and +1 so the motion of the DM halo is prograde. If the angle between the two angular momentum vectors is between 90 and 180 degrees (including 180 degrees) then the $cos(\theta)$ term will be between 0 and -1 and the motion of the DM halo is retrograde. This figure displays the possible results from equation 4. In this project, I have determined the angular momentum of both the stellar disk and the DM halo and computed the dot product in order to investigate this angle.}
+    \label{fig:ProVRetro}
+\end{figure}
+
+\paragraph{} One can calculate the angular momentum of each galaxy component using the following equation for angular momentum, represented as $\vec{L}$:
+\begin{equation}
+    \vec{L} = \sum_{i} \vec{r_i} \times \vec{p_i} = \sum_{i} m_i (\vec{r_i} \times \vec{v_i})
+\end{equation}
+where the sum is over every $i$th particle in the simulation data. $m_i$, $\vec{r_i}$, and $\vec{v_i}$ represent the mass, position vector (x, y, and z components), and velocity vector (x, y, and z components) of each individual particle. One can import the mass of every particle directly from the simulation data, but the position and velocity vectors need to be adjusted to be in the frame of the center of mass of the galaxy. One can then mask the position vectors to only analyze the particles within a certain radius so that particles far away from the galactic center do not affect the accuracy of the calculations. These maximum radii used for the computations are 20 kpc for the DM halo particles and 15 kpc for the stellar disk particles.
+\\To determine if the dark matter halo is prograde or retrograde, it is necessary to compute the dot product of the angular momenta of the dark matter halo and the stellar disk. For this, one can say the following by definition of the dot product:
+\begin{equation}
+    \vec{L_{halo}} \cdot \vec{L_{disk}} = |\vec{L_{halo}}||\vec{L_{disk}}|cos\theta \rightarrow cos\theta = \frac{\vec{L_{halo}} \cdot \vec{L_{disk}}}{|\vec{L_{halo}}||\vec{L_{disk}}|}
+\end{equation}
+The information that will express whether the orbit around the disk is prograde or retrograde is the cosine expression. As previously stated, if the cosine term is positive, the orbit of the dark matter halo is prograde. If the cosine term is negative, the orbit of the dark matter halo is retrograde. I can also analyze how this rotational motion changes throughout the merger. To do so, I chose an array of snapshots to collect simulation data from and perform the above calculations for every snapshot.
+
+\paragraph{} The first plot that I created displays the separation of the MW and M31 as a function of time. This can be compared to the analysis of the sign of the cosine term to analyze how the separation between the galaxies affects the rotational motion of each galaxy component. The second plot that I created displays the cosine term from the dot product of the angular momenta versus time. There are two lines: one representing the MW and the other representing M31. This demonstrates how the direction of the angular momentum of each galaxy changes with time throughout the merger. This plot will demonstrate how the sign of the dot product changes at every chosen snapshot.
+
+\paragraph{} After watching video simulations of the local group (MW, M31, and M33), it seems that relative to each other, the Milky Way and M31 are rotating in opposite directions. It also seems that the Milky Way has both a prograde and a retrograde component to the dark matter halo rotation, while the dark matter halo of M31 seems to have a prograde orbit \citep{Deason+2011}. Because of this, I hypothesize that the dark matter halo remnant post-collision would orbit prograde to the baryon disk remnant post-collision. We know that as long as the DM halo and the stellar disk rotate in opposing directions, the galaxy system will not be in equilibrium. If the DM halo remnant exhibits retrograde motion relative to the stellar disk remanant, the motion should become prograde as the galaxy remnant has time to stabilize after the major merger. Because the halo has a lower density with the mass more spread out among the halo, I would assume that the disk of the remnant will have more angular momentum than the halo of the remnant because the baryon matter orbiting within the disk will be moving at greater velocities than the objects within the halo. Considering this, it may be the case that the angular momenta of the disks may affect the angular momenta of the halos throughout the merger. 
+
+
+\section{Results}
+
+\paragraph{} From figure \ref{fig:separation}, one can see that the MW and M31 make their first close encounter at approximately 3.95 Gyr in the future but there is still approximately 50 kpc separating the two galaxy centers of mass. The second close encounter occurs at approximately 5.85 Gyr in the future where the separation between the two galaxy centers of mass is close to zero. The last encounter occurs at approximately 6.4 Gyr where the separation is now zero meaning the MW and M31 have merged relative to their individual centers of mass. From this plot, I expect that there would be dramatic changes to the sign of the cosine term at these times because the closer these galaxies are, the more that both the DM halo and stellar disk particles will gravitationally interact and therefore affect the angular momentum calculations for each galaxy component. 
+
+\paragraph{} From figure \ref{fig:cosinePRE}, one can analyze the motion of the DM halo of each galaxy relative to its stellar disk. At present day, both the MW and M31 halos have prograde motion relative to their disks, meaning that the angular momentum of their DM halos and stellar disks are somewhat aligned. From the present day to the first major interaction at approximately 3.95 Gyr, the motion of both DM halos switch from being prograde to retrograde and back to prograde once more. One can see that after this first close interaction, the motion of each DM halo is very different in each galaxy. The MW DM halo motion is strongly retrograde while the M31 DM halo motion is strongly prograde. Once the MW and M31 have their second close interaction (with nearly zero separation shown in figure \ref{fig:separation}), the dot product of the two galaxies begin to mimic one another. In other words, the motion of the DM halo of the MW becomes more prograde and the motion of the DM halo of M31 becomes more retrograde. After their final encounter, the individual galaxies merge together to become the MW-M31 remnant. One can see that the changes in the sign of the dot product of the angular momenta becomes more similar for the MW and M31. The DM halo motion of the remnant can be seen more clearly in figure \ref{fig:cosinePOST}. This figure shows the motion of the DM halo of the MW-M31 galaxy remnant relative to the disk remnant. Starting at the time of the last close interaction at approximately 6.42 Gyr, the motion of the DM halo remnant is prograde relative to the stellar disk remnant and continues to be prograde until approximately 10 Gyr in the future. After approximately 10.9 Gyr in the future, the motion of the DM halo remnant becomes prograde once again and the angular momentum vectors of the DM halo and the stellar disk continue to align as the cosine term approaches +1. Therefore, one can conclude that the motion of the MW-M31 DM halo remnant is prograde relative to the MW-M31 stellar disk remnant.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{MW-M31_Separation.png}
+    \caption{This figure shows the distance separation between the MW and M31 in kpc. The y-axis represents the separation between the two galaxies in kpc and the x-axis represents the time in Gyr from the snapshot data which goes from snapshot 0 to 800 in intervals of 50 so the start time is current-time and the end time is approximately 11.4 Gyr in the future. The solid line shows the separation as a function of time. The dashed lines show the three close encounters of the MW and M31 at times 3.95 Gyr, 5.85 Gyr, and 6.4 Gyr. This figure can be compared to the figure showing the sign of the cosine term so that we may explain the changes in rotational motion using the separation of the galaxies.}
+    \label{fig:separation}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{CosineTermVsTime.png}
+    \caption{This figure shows the cosine term described by equation 4 in the methodology section for both the MW and M31. The y-axis represents the cosine term which can lie between -1 and +1. A positive cosine term corresponds to prograde motion of the DM halo and a negative cosine term corresponds to the retrograde motion of the DM halo. The x-axis represents the time in Gyr from the snapshot data which goes from snapshot 0 to 800 in intervals of 50 so the start time is present day and the end time is approximately 11.4 Gyr in the future. The dashed line represents dot product of M31 and the solid line represents the dot product of the MW. The dotted, vertical lines represent the times when the MW and M31 have a close encounter which was determined from figure \ref{fig:separation}. This figure shows that both galaxies demonstrate prograde motion at present day but both DM halos switch between prograde and retrograde motion throughout the merger before stabilizing toward prograde motion toward the end of the simulation.}
+    \label{fig:cosinePRE}
+\end{subfigure}
+\begin{subfigure}[b]{0.5\textwidth}              
+    \centering
+    \includegraphics[width=0.95\columnwidth]{CosineTermVsTimePOSTMERGER.png}
+    \caption{This figure shows the cosine term for the MW-M31 galaxy remnant. The y-axis represents the cosine term which can lie between -1 and +1. A positive cosine term corresponds to the prograde motion of the DM halo and a negative cosine term corresponds to the retrograde motion of the DM halo. The x-axis represents the time in Gyr from the snapshot data which goes from snapshot 450 to 800 in intervals of 50 so the start time is approximately 6.42 Gyr in the future to approximately 11.4 Gyr in the future. This figure shows that starting at the time of the final encounter of the MW and M31, the motion of the DM halo remnant remains prograde until approximately 10 Gyr when the motion becomes retrograde until approximately 10.9 Gyr when the motion becomes prograde once again.}
+    \label{fig:cosinePOST}
+\end{subfigure}
+\caption{These figures represent the cosine terms for the MW, M31 and the MW-M31 galaxy remnant as a function of time}
+\end{figure}
+
+
+\section{Discussion}
+
+\paragraph{} From figure \ref{fig:cosinePOST}, we can conclude that the motion of the MW-M31 DM halo remnant is prograde relative to the motion of the stellar disk remnant. This is due to the fact that the dot product of the angular momenta of the halo and disk is positive for the majority of the time post-merger. It is important to note that from figure \ref{fig:cosinePRE}, the motion of the DM halos of the MW and M31 are highly unstable through the gravitational interaction with the other galaxy throughout the merger. This result does agree with my hypothesis that the DM halo remnant would orbit prograde to the stellar disk remnant. This hypothesis was due to the fact that the MW and M31 and their components seemed to be rotating in varying directions but as the galaxy remnant had time to stabilize, kinetic equilibrium would be reached and the DM halo remnant and the stellar disk remnant would rotate in the same direction.
+
+\paragraph{} We know that DM halos take a considerable amount of time to stabilize \citep{Drakos+2019} and we can see this in figure \ref{fig:cosinePRE}. We also have claimed that major mergers result in an alteration in the DM halo orientation due to the extreme change in angular momenta \citep{Baptista+2023}. Again, from figures \ref{fig:cosinePRE} and \ref{fig:cosinePOST}, one can see that throughout the gravitational interactions between the MW DM halo and M31 DM halo, the DM halo remnant orientation changes significantly. This result also aligns with \citep{Bett+2010} because we know from figure \ref{fig:Bett+2010} that it is most probable for the DM halo to rotate prograde relative to the stellar disk and we have now found that once the galaxy remnant has time to stabilize, the motion trends toward prograde motion. This is meaningful for our understanding of galaxy evolution because this simulation data provides insights into a major galaxy merger between the MW and M31. By calculating the angular momenta of each galaxy's components and analyzing how these values change throughout a major merger, one can determine the nature of the motion of the DM halo remnant and the stellar disk remnant. One can use these results to predict the behavior of DM halos and stellar disks of other major mergers and also to make assumptions about the merger history of other galaxies in our observable universe. 
+
+\paragraph{} The first uncertainty of my results would be that I did not use the high resolution files from the simulation data. Using the high resolution files would have resulted in more accurate results because the parameters tied to each particle would be more precise and less general. The second uncertainty would be that I did not use a combined center of mass for the remnant calculations. Instead, I calculated the angular momentum of the DM halo and the stellar disk for each galaxy separately at each snapshot. I then added each component (x, y, and z) of the angular momentum vectors together. This result still considers the remnant as two separate galaxies, rather than one merged galaxy. To improve the accuracy of the results, it would be best to concatenate the center of mass radii and velocities of each galaxy at times post-merger, then use these center of mass values to calculate the angular momentum of both the DM halo remnant and the stellar disk remnant. 
+
+
+\section{Conclusion}
+
+\paragraph{} The rotational motion of dark matter halos--- whether prograde (same direction) or retrograde (different directions) relative to their stellar disks--- is determined by the distribution of angular momentum throughout the galaxy components and plays a critical role in galaxy evolution. While most dark matter halos rotate prograde with respect to their stellar disk, this motion may change drastically throughout a major merger and these changes can provide insights into a remnant's dynamical history and structural evolution. In this study, I used an N-body simulation using semi-analytical orbit integrations to examine the motion of the dark matter halos and stellar disks of the Milky Way Galaxy (MW) and the Andromeda Galaxy (M31). 
+Specifically, I analyzed whether the dark matter halo remnant has prograde or retrograde motion with respect to the stellar disk remnant and how this motion evolves throughout the timescale of the major merger.
+
+\paragraph{} From this study, we found that the motion of the DM halo remnant is prograde relative to the stellar disk remnant for the MW-M31 major galaxy merger. From figure \ref{fig:cosinePRE}, one can determine that the angular momentum of each galaxy component for both the MW and M31 become aligned and misaligned throughout the merger but once the galaxies merge completely at approximately 6.4 Gyr, the galaxy components begin to stabilize and figure \ref{fig:cosinePOST} shows that the DM halo remnant motion becomes prograde at approximately 10.9 Gyr. This does agree with my hypothesis that the DM halo remnant would ultimately rotate prograde relative to the stellar disk remnant. This result is crucial for understanding galaxy evolution because major (and minor) mergers encourage large amounts of evolution in a relatively short amount of time. Determining that the DM halo remnant motion is prograde relative to the stellar disk remnant agrees with previous work such as \cite{Bett+2010} that when a galaxy is in a relatively stable state, it is most probable for the DM halo motion to be prograde relative to the disk.
+
+\paragraph{} In order to improve on this analysis, I would adjust my methodology to solve for the uncertainties previously discussed. It would be best for the results in this project to use the high resolution text files for the simulation data. This would allow for more particles to contribute to the angular momentum calculation and have a more accurate distribution of both DM and stellar matter. It would also be beneficial to compute the angular momentum of the DM halo remnant and the stellar disk remnant using the remnant center of mass radius and velocity, as opposed to using the individual galaxy centers of mass.
+
+\section{Acknowledgments} I would like to deeply thank Dr. Gurtina Besla and Himansh Rathore for their support and knowledge contributed to this project. This study was made possible using the following open-source Python packages: NumPy \citep{numpy}, Astropy \citep{Astropy}, MMatplotlib \citep{matplotlib}, and IPython \citep{iPython}.
+
+\subsection{Land Acknowledgment} We respectfully acknowledge the University of Arizona is on the land and territories of Indigenous peoples. Today, Arizona is home to 22 federally recognized tribes, with Tucson being home to the O’odham and the Yaqui. The University strives to build sustainable relationships with sovereign Native Nations and Indigenous communities through education offerings, partnerships, and community service.
+
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{mnras}
+\bibliography{ASTR400BFinalProject} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex
